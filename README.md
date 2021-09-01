@@ -12,7 +12,7 @@ This system is in develop yet.
 
 ## Storage
 
-Users can extend to use their particular storage service by implementing `Storage` protocol.
+Users can extend to use their particular storage service by implementing `Storage` trait.
 
 So far, this project plan to support local file system and Google Drive by default.
 
@@ -46,10 +46,10 @@ This example means following.
 
 ## Notice
 
-Users can extend to use their particular communication service by implementing `Notice` protocol.
+Users can extend to use their particular communication service by implementing `Notice` trait.
 
 So far, this project plan to support Discord by default.
 
 ## Aggregate
 
-Users can extend to use their particular way to aggregate reactions that are attached on items by implementing `Aggregate` protocol.
+Users can extend to use their particular way to aggregate reactions that are attached on items by implementing `Aggregate` trait.
