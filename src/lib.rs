@@ -9,8 +9,8 @@ pub use shipment::{ Shipment, ship, sorted_shipments };
 pub mod notice;
 pub use notice::{ Notice, NoticeError };
 
-pub mod aggregate;
-pub use aggregate:: { Aggregate, AggregateError };
+pub mod survey;
+pub use survey::{ Survey, SurveyError, Weightable, survey_weight };
 
 #[cfg(test)]
 mod test {
@@ -72,11 +72,11 @@ mod test {
     #[test]
     fn test_local_storage() {
         let storage = storage::LocalStorage{};
-        let clips = search(&storage, "tests/resources/*").unwrap();
-        for (i, clip) in clips.enumerate() {
+        let items = search(&storage, "tests/resources/*").unwrap();
+        for (i, item) in items.enumerate() {
             assert_eq!(
                 Path::new(&format!("tests/resources/{}.txt", i)),
-                clip
+                item
             );
         }
     }
@@ -110,10 +110,17 @@ mod test {
         standard.send("Hello".to_string()).unwrap();
     }
 
-    impl Aggregate for Standard {
+    impl Weightable for String {
+        type Weight = usize;
+        fn weight(&self) -> Option<usize> {
+            Some(self.len())
+        }
+    }
+
+    impl Survey for Standard {
         type Item = String;
-        type Items = IntoIter<Self::Item>;
-        fn aggregate(&self) -> Result<Self::Items, AggregateError> {
+        type Items = IntoIter<String>;
+        fn gather(&self) -> Result<Self::Items, SurveyError> {
             use std::num::ParseIntError;
             let x: Result<Vec<String>, ParseIntError> = (0..3)
                 .map(|i| {
@@ -124,16 +131,21 @@ mod test {
                 .collect();
             match x {
                 Ok(v) => Ok(v.into_iter()),
-                Err(_) => Err(AggregateError { msg: "aggregate error"})
+                Err(_) => Err(SurveyError { msg: "aggregate error"})
             }
         }
     }
 
     #[test]
-    fn test_aggregate() {
+    fn test_survey() {
         let standard = Standard{};
-        for line in standard.aggregate().unwrap() {
-            println!("{:}", line);
+
+        let items = survey_weight(&standard).unwrap();
+        for (i, item) in items.enumerate() {
+            assert_eq!(
+                (i.to_string(), 1),
+                item
+            );
         }
     }
 }

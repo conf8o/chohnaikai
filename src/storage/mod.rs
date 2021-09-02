@@ -13,8 +13,8 @@ where
     Self::Item: ToPathBuf,
     Self::Items: Iterator<Item=Self::Item>
 {
-    type Items;
     type Item;
+    type Items;
     
     fn glob(&self, pattern: &str) -> Result<Self::Items, PatternError>;
     fn exists<P: AsRef<Path>>(&self, item: P) -> bool;
