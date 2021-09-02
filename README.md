@@ -2,7 +2,7 @@
 
 A system for items that is interesting to closed community.
 
-For example, it notify game clips to Discord and aggregate reactions on them, and sort them.
+For example, in a game community with your friend, this can notify new game clips by members of them, aggregate reactions on them, and sort them.
 
 Also, users can implement particular ways to do them.
 
@@ -16,9 +16,11 @@ Users can extend to use their particular storage service by implementing `Storag
 
 So far, this project plan to support local file system and Google Drive by default.
 
-## Rules for Sorting
+## Rules for Shipment
 
-Users can set their rules for sorting weighted items. (One of sorted items that is going to store into a paticular place is called "Shipment")
+Users can set their rules to sort weighted items.
+
+The sorted items is going to store into a paticular storage as shipments.
 
 ```rust
 let weights: HashMap<&str, i32> = [("0.txt", 4), ("1.txt", 6), ("2.txt", 3), ("3.txt", 5)].iter().cloned().collect();
