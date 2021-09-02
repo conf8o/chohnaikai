@@ -2,7 +2,7 @@
 
 A system for items that is interesting to closed community.
 
-For example, it notify game clips to Discord and aggregate reactions on them, and sort them.
+For example, it notify game clips to Discord and survey reactions on them, and sort them.
 
 Also, users can implement particular ways to do them.
 
@@ -50,6 +50,6 @@ Users can extend to use their particular communication service by implementing `
 
 So far, this project plan to support Discord by default.
 
-## Aggregate
+## Survey reactions
 
-Users can extend to use their particular way to aggregate reactions that are attached on items by implementing `Aggregate` protocol.
+Users can extend to use their particular way to survey reactions that are attached on items by implementing `Survey` protocol.
