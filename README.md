@@ -1,8 +1,8 @@
 # chohnaikai
 
-A system for items that is interesting to closed community.
+A system for items that a closed community is interested in.
 
-For example, it notify game clips to Discord and survey reactions on them, and sort them.
+For example, in a game community with your friend, it can notify new game clips that members create, survey reactions on them, and sort them.
 
 Also, users can implement particular ways to do them.
 
@@ -42,9 +42,9 @@ ship(&storage, shipments).unwrap();
 
 This example means following.
 
-1. Up to the second items will be moved to "A" folder.
-2. items with 5 or more weights will be moved to "B" folder.
-3. The other items will be moved to "C" folder.
+1. Up to the second items will be moved to "A" folder.("1.txt" and "3.txt")
+2. items with more than 3 weights will be moved to "B" folder.("0.txt")
+3. The other items will be moved to "C" folder.("3.txt")
 
 ## Notice
 
